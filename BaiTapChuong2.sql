@@ -1,0 +1,22 @@
+﻿--1. Chọn toàn bộ thông tin trong bảng SALGRADE
+SELECT * From SALGRADE
+
+--2. Chọn toàn bộ thông tin trong bảng EMP
+SELECT * FROM EMP
+
+--3. Hiển thị mọi loại nghề nghiệp
+SELECT JOB FROM EMP
+
+--4. Hiển thị tên nhân viên và thu nhập trong một năm (REMUNERATION)
+SELECT ENAME, SAL*12 AS REMUNERATION From EMP
+
+--5. Hiển thị theo nội dung
+SELECT ENAME || ' HAS HELP THE POSITION OF ' || JOB || 'IN DEPT ' || DEPTNO || ' SINCE ' || HIREDATE FROM EMP
+
+--6. Hiển thị cấu trúc bảng emp
+Desc EMP;
+
+--7. Thay đổi nhãn và định dạng hiển thị của cột sal và hiredate trong bảng emp
+SELECT  TO_CHAR(SAL, '9999.9') AS SALED,
+        TO_CHAR(HIREDATE, 'dd/MM/yyyy') AS TIME
+FROM EMP
