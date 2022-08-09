@@ -1,4 +1,4 @@
-﻿--1. Chọn toàn bộ thông tin trong bảng SALGRADE
+--1. Chọn toàn bộ thông tin trong bảng SALGRADE
 SELECT * From SALGRADE
 
 --2. Chọn toàn bộ thông tin trong bảng EMP
