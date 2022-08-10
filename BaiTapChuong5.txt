@@ -1,0 +1,63 @@
+--1. Hiển thị toàn bộ tên nhân viên và tên phòng ban làm việc sắp xếp theo tên phòng ban.
+SELECT ENAME, DNAME FROM EMP, DEPT
+WHERE EMP.DEPTNO = DEPT.DEPTNO
+ORDER BY DNAME ASC;
+
+--2. Hiển thị tên nhân viên, vị trí địa lý, tên phòng với điều kiện lương >1500.
+SELECT ENAME, LOC, DNAME FROM EMP, DEPT
+WHERE SAL > 1500;
+
+--3. Hiển thị tên nhân viên, nghề nghiệp, lương và mức lương.
+SELECT ENAME, JOB, SAL, GRADE FROM EMP, SALGRADE;
+
+--4. Hiển thị tên nhân viên, nghề nghiệp, lương và mức lương, với điều kiện mức lương=3.
+SELECT ENAME, JOB, SAL, GRADE FROM EMP, SALGRADE
+WHERE GRADE = 3;
+
+--5. Hiển thị những nhân viên tại DALLAS
+SELECT DISTINCT ENAME, LOC, SAL FROM EMP,DEPT
+WHERE LOC = 'DALLAS';
+
+--6. Hiển thị tên nhân viên , nghề nghiệp, lương, mức lương, tên phòng làm việc trừ nhân viên có nghề là CLERK và sắp xếp theo chiều giảm.
+SELECT DISTINCT ENAME, JOB, SAL, GRADE, DNAME FROM EMP, DEPT, SALGRADE
+WHERE JOB NOT IN 'CLERK'
+ORDER BY ENAME DESC;
+
+--7. Hiển thị chi tiết về những nhân viên kiếm được 36000 $ 1 năm hoặc nghề là cleck.
+--(gồm các trường tên, nghề, thu nhập, mã phòng, tên phòng, mức lương)
+SELECT DISTINCT ENAME, JOB, SAL*12 AS ANUAL_SAL,EMP.DEPTNO ,DNAME, GRADE FROM EMP, DEPT, SALGRADE
+WHERE SAL*12 = 36000 OR JOB = 'CLERK';
+
+--8. Hiển thị những phòng không có nhân viên nào làm việc.
+SELECT * FROM DEPT
+WHERE DEPTNO NOT IN (SELECT DISTINCT DEPTNO FROM EMP);
+
+--9. Hiển thị mã nhân viên, tên nhân viên, mã người quản lý, tên người quản lý
+SELECT E.EMPNO EMP_ID, E.ENAME EMP_NAME, M.EMPNO MGR_ID, M.ENAME MGR_NAME FROM EMP E, EMP M
+WHERE E.MGR = M.EMPNO AND E.SAL < M.SAL;
+
+--10. Như câu 9 hiển thị thêm thông tin về ông KING.
+SELECT E.EMPNO EMP_ID, E.ENAME EMP_NAME, M.EMPNO MGR_ID, M.ENAME MGR_NAME FROM EMP E, EMP M
+WHERE E.MGR = M.EMPNO;
+
+--11. Hiển thị nghề nghiệp được tuyển dụng vào năm 1981 và không được tuyển dụng vào năm 1994.
+SELECT JOB, TO_CHAR(HIREDATE, 'yyyy') AS YEAR_WORK FROM EMP
+WHERE TO_CHAR(HIREDATE, 'yyyy') = 1981 OR TO_CHAR(HIREDATE, 'yyyy') = 1994;
+
+--12. Tìm những nhân viên gia nhập công ty trước giám đốc của họ.
+SELECT * FROM EMP
+WHERE JOB != 'PRESIDENT' AND HIREDATE < ALL (SELECT HIREDATE FROM EMP
+                                            WHERE JOB = 'PRESIDENT');
+
+--13. Tìm tất cả các nhân viên, ngày gia nhập công ty, tên nhân viên, tên người giám đốc
+--và ngày gia nhập công ty của người giám đốc ấy.
+SELECT E.ENAME EMP_ENAME, E.HIREDATE EMP_HIREDATE, M.ENAME MGR_ENAME, M.HIREDATE MGR_DATE FROM EMP E, EMP M
+WHERE E.MGR = M.EMPNO;
+
+--14. Tìm những nhân viên kiếm được lương cao nhất trong mỗi loại nghề nghiệp.
+SELECT DISTINCT ENAME, JOB, MAX(SAL) FROM EMP
+GROUP BY ENAME, JOB;
+
+--15. Tìm mức lương cao nhất trong mỗi phòng ban, sắp xếp theo thứ tự phòng ban.
+SELECT DEPTNO, MAX(SAL) FROM EMP
+GROUP BY DEPTNO;
