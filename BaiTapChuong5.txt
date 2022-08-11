@@ -61,3 +61,16 @@ GROUP BY ENAME, JOB;
 --15. Tìm mức lương cao nhất trong mỗi phòng ban, sắp xếp theo thứ tự phòng ban.
 SELECT DEPTNO, MAX(SAL) FROM EMP
 GROUP BY DEPTNO;
+
+--16. Tìm nhân viên gia nhập vào phòng ban sớm nhất
+SELECT ENAME, HIREDATE, DEPTNO FROM EMP EM
+WHERE HIREDATE = (SELECT MIN(HIREDATE) FROM EMP WHERE EM.DEPTNO = EMP.DEPTNO);
+
+--17. Hiển thị những nhân viên có mức lương lớn hơn lương TB của phòng ban mà họ làm việc.
+SELECT ENAME, SAL FROM EMP
+WHERE SAL > (SELECT AVG(SAL) FROM EMP);
+
+--18. Hiển thị tên nhân viên, mã nhân viên, mã giám đốc, tên giám đốc, phòng ban làm
+--việc của giám đốc, mức lương của giám đốc.
+SELECT DISTINCT E.EMPNO EMP_ID, E.ENAME EMP_NAME, M.EMPNO MGR_ID, M.ENAME MGR_NAME, M.DEPTNO MGR_DEPTNO, M.SAL MGR_SAL FROM EMP E, EMP M
+WHERE E.MGR = M.EMPNO OR M.JOB = 'PRESIDENT';
