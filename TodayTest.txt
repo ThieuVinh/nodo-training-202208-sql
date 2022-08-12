@@ -166,4 +166,15 @@ GROUP BY NXB.MA,NXB.TEN, TO_CHAR(NAM_SAN_XUAT, 'YYYY')
 ORDER BY TO_CHAR(NAM_SAN_XUAT, 'YYYY') DESC;
 
 --13.Hiển thị 5 quyển sách được các bạn đọc có độ tuổi từ 18 đến 25 mượn nhiều nhất tính từ đầu năm 2022. (Tính theo trường số lượng mượn của sách)
-SELECT  FROM VINHTQ_SACH
+SELECT * FROM (
+     SELECT S.MA, S.TEN , SUM(SO_LUONG_DANG_MUON)
+    FROM VINHTQ_MUONSACH MS JOIN VINHTQ_SACH S ON MS.ID_SACH = S.ID
+                            JOIN VINHTQ_BANDOC BD ON MS.ID_BAN_DOC = BD.ID
+    WHERE (TO_CHAR(SYSDATE, 'yyyy') - TO_CHAR(NGAY_SINH, 'yyyy')) BETWEEN 18 AND 25 AND TO_CHAR(NGAY_GIO_MUON, 'yyyy') = '2022'
+    GROUP BY S.MA, S.TEN
+) WHERE ROWNUM < 6;
+
+--14.Hiển thị toàn bộ bạn đọc và sách mà bạn đọc đấy mượn, sẽ có bạn chưa mượn vẫn cần hiển thị và tên sách để là null.
+SELECT BD.MA, BD.TEN , S.TEN
+FROM VINHTQ_MUONSACH MS JOIN VINHTQ_SACH S ON MS.ID_SACH = S.ID
+                        LEFT JOIN VINHTQ_BANDOC BD ON MS.ID_BAN_DOC = BD.ID
