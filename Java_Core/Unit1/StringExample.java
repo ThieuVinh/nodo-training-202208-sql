@@ -1,4 +1,4 @@
-package Unit1;
+package unit1;
 
 public class StringExample {
     public static void main(String[] args) {
