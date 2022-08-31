@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="edu.hanoi.jazz.model.User" table="HN_USER">
+        <meta attribute="class-description">MappingUser class to table HN_USER</meta>
+        <id name="username" type="java.lang.String" column="username" />
+        <property name="password" column="password" type="java.lang.String" />
+        <property name="email" column="email" type="java.lang.String" />
+        <property name="age" column="age" type="int" />
+        <property name="groupId" column="groupId" type="int" />
+    </class>
+</hibernate-mapping>

@@ -1,15 +1,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-						http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-						http://www.springframework.org/schema/context 
-						http://www.springframework.org/schema/context/spring-context-4.2.xsd
-						http://www.springframework.org/schema/mvc
- 						http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
-						http://www.springframework.org/schema/security
-						http://www.springframework.org/schema/security/spring-security-5.6.xsd">
+	   xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+		xmlns:security="http://www.springframework.org/schema/security"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context-4.2.xsd
+							http://www.springframework.org/schema/mvc
+							http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+							http://www.springframework.org/schema/security
+							http://www.springframework.org/schema/security/spring-security-5.6.xsd
+							http://www.springframework.org/schema/jdbc
+       						http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd">
 
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
@@ -45,6 +48,7 @@
 							login-processing-url="/j_spring_security_check"
 							 default-target-url="/nguoi-dung"
 							authentication-failure-url="/dang-nhap?error=1"/>
+		<security:logout logout-url="/j_security_logout" logout-success-url="/"/>
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider>
@@ -55,5 +59,31 @@
 		</security:authentication-provider>
 	</security:authentication-manager>
 	<security:global-method-security pre-post-annotations="enabled" />
-	
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/vinh_database" />
+		<property name="username" value="root" />
+		<property name="password" value="19082002" />
+	</bean>
+
+	<bean id="startEventHandler" class="edu.hanoi.jazz.ContextStartEventHandler" />
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="packagesToScan" value="edu.hanoi.jazz.model" />
+
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:User.xml</value>
+			</list>
+		</property>
+	</bean>
+
 </beans>
