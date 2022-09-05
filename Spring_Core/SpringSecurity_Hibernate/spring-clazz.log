@@ -1,0 +1,22 @@
+[2022-09-05 10:25:28] INFO [restartedMain] ContextStartEventHandler.onApplicationEvent(22) | context start application org.springframework.jdbc.datasource.DriverManagerDataSource@71e9d386
+[2022-09-05 10:25:28] INFO [restartedMain] ContextStartEventHandler.createTable(42) | Table hn_user already exists !
+[2022-09-05 10:26:29] INFO [http-nio-8080-exec-6] GroupDAO.update(86) | Update user user3 done !
+[2022-09-05 10:26:29] INFO [http-nio-8080-exec-6] UserController.addNew(58) | add new user --> edu.hanoi.jazz.model.User@5044f9a6
+[2022-09-05 10:35:59] INFO [restartedMain] ContextStartEventHandler.onApplicationEvent(22) | context start application org.springframework.jdbc.datasource.DriverManagerDataSource@173c8fa2
+[2022-09-05 10:35:59] INFO [restartedMain] ContextStartEventHandler.createTable(42) | Table hn_user already exists !
+[2022-09-05 10:50:46] INFO [restartedMain] ContextStartEventHandler.onApplicationEvent(22) | context start application org.springframework.jdbc.datasource.DriverManagerDataSource@71e9d386
+[2022-09-05 10:50:46] INFO [restartedMain] ContextStartEventHandler.createTable(42) | Table hn_user already exists !
+[2022-09-05 10:53:40] INFO [restartedMain] ContextStartEventHandler.onApplicationEvent(22) | context start application org.springframework.jdbc.datasource.DriverManagerDataSource@c90f781
+[2022-09-05 10:53:40] INFO [restartedMain] ContextStartEventHandler.createTable(42) | Table hn_user already exists !
+[2022-09-05 11:01:14] INFO [restartedMain] ContextStartEventHandler.onApplicationEvent(22) | context start application org.springframework.jdbc.datasource.DriverManagerDataSource@22516532
+[2022-09-05 11:01:14] INFO [restartedMain] ContextStartEventHandler.createTable(42) | Table hn_user already exists !
+[2022-09-05 11:04:46] INFO [restartedMain] ContextStartEventHandler.onApplicationEvent(22) | context start application org.springframework.jdbc.datasource.DriverManagerDataSource@882750c
+[2022-09-05 11:04:46] INFO [restartedMain] ContextStartEventHandler.createTable(42) | Table hn_user already exists !
+[2022-09-05 11:10:32] INFO [restartedMain] ContextStartEventHandler.onApplicationEvent(22) | context start application org.springframework.jdbc.datasource.DriverManagerDataSource@b9341b6
+[2022-09-05 11:10:32] INFO [restartedMain] ContextStartEventHandler.createTable(42) | Table hn_user already exists !
+[2022-09-05 11:13:30] INFO [restartedMain] ContextStartEventHandler.onApplicationEvent(22) | context start application org.springframework.jdbc.datasource.DriverManagerDataSource@49278831
+[2022-09-05 11:13:30] INFO [restartedMain] ContextStartEventHandler.createTable(42) | Table hn_user already exists !
+[2022-09-05 11:14:58] INFO [restartedMain] ContextStartEventHandler.onApplicationEvent(22) | context start application org.springframework.jdbc.datasource.DriverManagerDataSource@1a92047e
+[2022-09-05 11:14:58] INFO [restartedMain] ContextStartEventHandler.createTable(42) | Table hn_user already exists !
+[2022-09-05 11:16:04] INFO [restartedMain] ContextStartEventHandler.onApplicationEvent(22) | context start application org.springframework.jdbc.datasource.DriverManagerDataSource@1a92047e
+[2022-09-05 11:16:04] INFO [restartedMain] ContextStartEventHandler.createTable(42) | Table hn_user already exists !
